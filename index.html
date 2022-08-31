@@ -5,9 +5,41 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
+    <script src="./app.js" defer></script>
     <title>Ecommerce Page</title>
 </head>
 <body>
-    
+    <header>
+        <img src="./images/icon-menu.svg" alt="menu-img" class="header-item" id="menu-img">
+        <img src="./images/logo.svg" alt="logo-img" class="header-item" id="logo-img">
+        <img src="./images/icon-cart.svg" alt="cart-img" class="header-item" id="cart-img">
+        <img src="./images/image-avatar.png" alt="avatar-img" class="header-item" id="avatar-img">
+    </header>
+    <section id="preview-container">
+        <img src="./images/image-product-1.jpg" alt="sneaker-preview" id="sneaker-preview">
+
+    </section>
+    <main>
+        <h3 id="company-text">SNEAKER COMPANY</h3>
+        <h1 id="product-title">Fall Limited Edition Sneakers</h1>
+        <p id="product-description">These low-profile sneakers are your perfect casual wear companion.
+            Featuring a durable rubber outer sole, they'll withstand everything
+            the weather can offer.
+        </p>
+        <div id="price-container">
+            <span id="price">$125.00</span>
+            <span id="discount">50%</span>
+            <span id="og-price">$250.00</span>
+        </div>
+        <div id="quantity-container">
+            <img src="./images/icon-minus.svg" alt="minus-img" id="minus-img">
+            <strong style="font-size: 1.25rem;" id="quantity">0</strong>
+            <img src="./images/icon-plus.svg" alt="plus-img" id="plus-img">
+        </div>
+        <div id="add-cart-button">
+            <img src="./images/icon-cart.svg" alt="cart-img" id="add-cart-img">
+            <span style="font-weight: 600;">Add to cart</span>
+        </div>
+    </main>
 </body>
 </html>
