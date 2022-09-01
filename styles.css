@@ -17,7 +17,6 @@ header {
     position: absolute;
     display: flex;
     padding: 1rem;
-    border: 1px solid red;
     background: white;
     z-index: 1;
     width: 100%;
@@ -46,6 +45,10 @@ header {
 #preview-container {
     z-index: 0;
     transform: translateY(2.5rem);
+    position: relative;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #sneaker-preview {
@@ -54,10 +57,43 @@ header {
     
 }
 
+.icon-bg {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 10rem;
+}
+
+#icon-bg-previous {
+    position: absolute;
+    top: calc(50% - 2.5rem);
+    left:  1.25rem;
+    cursor: pointer;
+}
+
+#icon-bg-next {
+    position: absolute;
+    top: calc(50% - 2.5rem);
+    right: 1.25rem;
+    cursor: pointer;
+}
+
+#next-icon {
+    padding-left: 0.15rem;
+}
+
+#previous-icon {
+    padding-right: 0.15rem;
+}
+
+
 main {
     margin-top: 2.3rem;
     padding: 1rem;
-    padding-right: 2rem;
+    max-width: 30rem;
 }
 
 #company-text {
@@ -128,6 +164,7 @@ main {
     color: white;
     font-weight: 500;
     box-shadow: 0.25rem 0.25rem 2rem -0.75rem var(--primary-color);
+    cursor: pointer;
 }
 
 #add-cart-img {
@@ -146,5 +183,44 @@ main {
     cursor: pointer;
 }
 
+/* Cart Functionality*/
 
+#cart-container {
+    position: absolute;
+    width: 90%;
+    margin-top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 60%;
+    top: 1.5rem;
+    background-color: white;
+    z-index: 2;
+    display: none;
+    flex-direction: column;
+    border-radius: 0.8rem;
+}
 
+#cart-title {
+    font-weight: 700;
+    padding: 1rem 1rem 1.5rem 1rem;
+    border-bottom: 1px solid hsl(223, 64%, 90%);
+}
+
+#text-container {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#empty-cart-text {
+    font-weight: 700;
+    color: hsl(0, 0%, 0%, 60%);
+}
+
+@media screen and (min-width: 450px) {
+    main {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
