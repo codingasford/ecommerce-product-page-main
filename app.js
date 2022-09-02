@@ -16,7 +16,19 @@ let previousImgElem = document.querySelector("#icon-bg-previous");
 let nextImgElem = document.querySelector("#icon-bg-next");
 let headerCartBtnElem = document.querySelector("#cart-img");
 let cartContainerElem = document.querySelector("#cart-container");
-let addCartBtnElem = document.querySelector("#add-cart-button");
+let addCartBtnElem = document.querySelector("#add-cart-btn");
+let fullCartContainerElem = document.querySelector("#full-cart-container");
+let emptyCartTextElem = document.querySelector("#empty-cart-text");
+let deleteCartItemElem = document.querySelector("#cart-item-delete-btn");
+let cartItemQuantityElem = document.querySelector("#cart-item-quantity");
+let cartQuantity = 0;
+let cartItemTotalElem = document.querySelector("#cart-item-total");
+let cartImgQuantityElem = document.querySelector("#cart-img-quantity");
+let menuImgElem = document.querySelector("#menu-img");
+let hamburgerMenuElem = document.querySelector("#hamburger-menu-pullout");
+let hamburgerMenuCloseElem = document.querySelector("#hamburger-menu-close-img");
+let hamburgerMenuOpen = false;
+let menuFadeBgElem = document.querySelector("#menu-fade-bg");
 
 //increase quantity
 plusImgElem.addEventListener("click", () => {
@@ -50,7 +62,7 @@ previousImgElem.addEventListener("click", () => {
 
 headerCartBtnElem.addEventListener("click", () => {
     //enable cart display, disable preview buttons
-    if(cartContainerElem.style.display === "none") {
+    if(cartContainerElem.style.display === "none" && !hamburgerMenuOpen) {
         cartContainerElem.style.display = "flex";
         previousImgElem.style.display = "none";
         nextImgElem.style.display = "none";
@@ -64,5 +76,63 @@ headerCartBtnElem.addEventListener("click", () => {
 
 //add cart functionality
 addCartBtnElem.addEventListener("click", () => {
-    
+
+    // Check if quantity is 0, and if so return and pop up warning
+    if(quantityVal == 0) {
+        return;
+    }
+
+    //enable full-cart-preview
+    //disable empty-cart-preview
+    fullCartContainerElem.style.display = "flex";
+    emptyCartTextElem.style.display = "none";
+
+    //evaluate new quantity 
+    // \u00a0 is nbsp but works when parsed by textContent for a space
+    cartQuantity += quantityVal;
+    cartItemQuantityElem.textContent = `${cartQuantity}\u00a0`;
+
+    //calculate total and assign to total text
+    cartItemTotalElem.textContent = `$${cartQuantity * 125}.00`;
+
+    //enable cart icon quantity preview
+    cartImgQuantityElem.style.display = "inline";
+    //assign cart icon quantity value
+    cartImgQuantityElem.textContent = `${cartQuantity}`;
+});
+
+deleteCartItemElem.addEventListener("click", () => {
+    //disable full-cart-preview
+    //enable empty-cart-preview
+    fullCartContainerElem.style.display = "none";
+    emptyCartTextElem.style.display = "block";
+
+    //reset cart quantity
+    cartQuantity = 0;
+
+    //dosable cart icon quantity preview
+    cartImgQuantityElem.style.display = "none";
+});
+
+//hamburger menu functionality
+menuImgElem.addEventListener("click", () => {
+    hamburgerMenuElem.style.display = "block";
+    hamburgerMenuOpen = true;
+    //renable previous and next buttons in case was in cart when clicked menu
+    previousImgElem.style.display = "flex";
+    nextImgElem.style.display = "flex";
+    //disable cart so both aren't open at the same time
+    cartContainerElem.style.display = "none";
+    //enaable menu fade background
+    menuFadeBgElem.style.display = "block";
+});
+
+hamburgerMenuCloseElem.addEventListener("click", () => {
+    hamburgerMenuElem.style.display = "none";
+    hamburgerMenuOpen = false;
+    //renable previous and next buttons
+    previousImgElem.style.display = "flex";
+    nextImgElem.style.display = "flex";
+    //disable menu fade background
+    menuFadeBgElem.style.display = "none";
 });

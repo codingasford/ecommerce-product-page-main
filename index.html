@@ -9,17 +9,46 @@
     <title>Ecommerce Page</title>
 </head>
 <body>
+    <!-- Hamburger Menu Mode -->
+    <div id="hamburger-menu-pullout">
+        <div id="hamburger-menu-flex-container">
+            <img src="./images/icon-close.svg" alt="close-x-img" id="hamburger-menu-close-img">
+            <div>Collections</div>
+            <div>Men</div>
+            <div>Women</div>
+            <div>About</div>
+            <div>Contact</div>
+        </div>
+    </div>
+    <div id="menu-fade-bg"></div>
     <header>
         <img src="./images/icon-menu.svg" alt="menu-img" class="header-item" id="menu-img">
         <img src="./images/logo.svg" alt="logo-img" class="header-item" id="logo-img">
-        <img src="./images/icon-cart.svg" alt="cart-img" class="header-item" id="cart-img">
+        <div id="cart-img-container">
+            <span id="cart-img-quantity">1</span>
+            <img src="./images/icon-cart.svg" alt="cart-img" class="header-item" id="cart-img">
+        </div>
         <img src="./images/image-avatar.png" alt="avatar-img" class="header-item" id="avatar-img">
     </header>
     <section id="preview-container">
         <div id="cart-container">
             <div id="cart-title">Cart</div>
-            <div id="text-container">
+            <div id="cart-content-container">
                 <div id="empty-cart-text">Your cart is empty.</div>
+                <div id="full-cart-container">
+                    <div id="cart-item-container">
+                        <img src="./images/image-product-1-thumbnail.jpg" alt="product-1-img" id="cart-item-img">
+                        <div id="cart-item-details-container">
+                            <div id="cart-item-title">Autumn Limited Edition...</div>
+                            <span id="cart-item-price">$125.00</span>
+                            <span>&nbsp;x</span>
+                            <span id="cart-item-quantity">1&nbsp;</span>
+                            <span id="cart-item-total"><strong>$125.00</strong></span>
+                        </div>
+                        <img src="./images/icon-delete.svg" alt="trashcan-image" id="cart-item-delete-btn">
+                    </div>
+                    <div id="checkout-btn">Checkout</div>
+                </div>
             </div>
         </div>
         <img src="./images/image-product-1.jpg" alt="sneaker-preview" id="sneaker-preview">
@@ -43,11 +72,15 @@
             <span id="og-price">$250.00</span>
         </div>
         <div id="quantity-container">
-            <img src="./images/icon-minus.svg" alt="minus-img" id="minus-img">
+            <span id="minus-img">
+                <img src="./images/icon-minus.svg" alt="minus-img">
+            </span>
             <strong style="font-size: 1.25rem;" id="quantity">0</strong>
-            <img src="./images/icon-plus.svg" alt="plus-img" id="plus-img">
+            <span id="plus-img">
+                <img src="./images/icon-plus.svg" alt="plus-img">
+            </span>
         </div>
-        <div id="add-cart-button">
+        <div id="add-cart-btn">
             <img src="./images/icon-cart.svg" alt="cart-img" id="add-cart-img">
             <span style="font-weight: 600;">Add to cart</span>
         </div>
