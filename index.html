@@ -9,81 +9,186 @@
     <title>Ecommerce Page</title>
 </head>
 <body>
-    <!-- Hamburger Menu Mode -->
-    <div id="hamburger-menu-pullout">
-        <div id="hamburger-menu-flex-container">
-            <img src="./images/icon-close.svg" alt="close-x-img" id="hamburger-menu-close-img">
-            <div>Collections</div>
-            <div>Men</div>
-            <div>Women</div>
-            <div>About</div>
-            <div>Contact</div>
-        </div>
-    </div>
-    <div id="menu-fade-bg"></div>
-    <header>
-        <img src="./images/icon-menu.svg" alt="menu-img" class="header-item" id="menu-img">
-        <img src="./images/logo.svg" alt="logo-img" class="header-item" id="logo-img">
-        <div id="cart-img-container">
-            <span id="cart-img-quantity">1</span>
-            <img src="./images/icon-cart.svg" alt="cart-img" class="header-item" id="cart-img">
-        </div>
-        <img src="./images/image-avatar.png" alt="avatar-img" class="header-item" id="avatar-img">
-    </header>
-    <section id="preview-container">
-        <div id="cart-container">
-            <div id="cart-title">Cart</div>
-            <div id="cart-content-container">
-                <div id="empty-cart-text">Your cart is empty.</div>
-                <div id="full-cart-container">
-                    <div id="cart-item-container">
-                        <img src="./images/image-product-1-thumbnail.jpg" alt="product-1-img" id="cart-item-img">
-                        <div id="cart-item-details-container">
-                            <div id="cart-item-title">Autumn Limited Edition...</div>
-                            <span id="cart-item-price">$125.00</span>
-                            <span>&nbsp;x</span>
-                            <span id="cart-item-quantity">1&nbsp;</span>
-                            <span id="cart-item-total"><strong>$125.00</strong></span>
-                        </div>
-                        <img src="./images/icon-delete.svg" alt="trashcan-image" id="cart-item-delete-btn">
+    <div id="preview-bg"></div>
+    <div id="body-container">
+        <!-- Hamburger Menu Mode -->
+        <div id="hamburger-menu-pullout">
+            <div class="nav-links-container" id="hamburger-menu-flex-container">
+                <img src="./images/icon-close.svg" alt="close-x-img" id="hamburger-menu-close-img">
+                <div>
+                    <div>
+                        <div>Collections</div>
                     </div>
-                    <div id="checkout-btn">Checkout</div>
+                </div>
+                <div>
+                    <div>
+                        <div>Men</div>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <div>Women</div>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <div>About</div>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <div>Contact</div>
+                </div>
                 </div>
             </div>
         </div>
-        <img src="./images/image-product-1.jpg" alt="sneaker-preview" id="sneaker-preview">
-        <div class="icon-bg" id="icon-bg-previous">
-            <img src="./images/icon-previous.svg" alt="previous-btn" id="previous-icon">
+        <div id="menu-fade-bg"></div>
+        <header>
+            <img src="./images/icon-menu.svg" alt="menu-img" class="header-item" id="menu-img">
+            <img src="./images/logo.svg" alt="logo-img" class="header-item" id="logo-img">
+            <div class="nav-links-container" id="navbar-desktop">
+                <div>
+                    <div>
+                        <div>Collections</div>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <div>Men</div>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <div>Women</div>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <div>About</div>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <div>Contact</div>
+                </div>
+                </div>
+            </div>
+            <div id="cart-img-container">
+                <span id="cart-img-quantity">1</span>
+                <img src="./images/icon-cart.svg" alt="cart-img" class="header-item" id="cart-img">
+            </div>
+            <img src="./images/image-avatar.png" alt="avatar-img" class="header-item" id="avatar-img">
+        </header>
+        <main>
+            <section id="preview-container">
+                <div id="cart-container">
+                    <div id="cart-title">Cart</div>
+                    <div id="cart-content-container">
+                        <div id="empty-cart-text">Your cart is empty.</div>
+                        <div id="full-cart-container">
+                            <div id="cart-item-container">
+                                <img src="./images/image-product-1-thumbnail.jpg" alt="product-1-img" id="cart-item-img">
+                                <div id="cart-item-details-container">
+                                    <div id="cart-item-title">Autumn Limited Edition...</div>
+                                    <span id="cart-item-price">$125.00</span>
+                                    <span>&nbsp;x</span>
+                                    <span id="cart-item-quantity">1&nbsp;</span>
+                                    <span id="cart-item-total"><strong>$125.00</strong></span>
+                                </div>
+                                <img src="./images/icon-delete.svg" alt="trashcan-image" id="cart-item-delete-btn">
+                            </div>
+                            <div id="checkout-btn">Checkout</div>
+                        </div>
+                    </div>
+                </div>
+                <img src="./images/image-product-1.jpg" alt="sneaker-preview" id="sneaker-preview">
+                <div class="icon-bg mobile" id="icon-bg-previous">
+                    <img src="./images/icon-previous.svg" alt="previous-btn" id="previous-icon">
+                </div>
+                <div class="icon-bg mobile" id="icon-bg-next">
+                    <img src="./images/icon-next.svg" alt="next-btn" id="next-icon">
+                </div>
+                <div class="desktop-preview-img-row">
+                    <div class="product-thumbnail-container">
+                        <img src="./images/image-product-1-thumbnail.jpg" alt="product-1-thumbnail" class="product-thumbnail-img">
+                        <div class="thumbnail-img-selected-filter"></div>
+                    </div>
+                    <div class="product-thumbnail-container">
+                        <img src="./images/image-product-2-thumbnail.jpg" alt="product-2-thumbnail" class="product-thumbnail-img">
+                        <div class="thumbnail-img-selected-filter"></div>
+                    </div>
+                    <div class="product-thumbnail-container">
+                        <img src="./images/image-product-3-thumbnail.jpg" alt="product-3-thumbnail" class="product-thumbnail-img">
+                        <div class="thumbnail-img-selected-filter"></div>
+                    </div>
+                    <div class="product-thumbnail-container"> 
+                        <img src="./images/image-product-4-thumbnail.jpg" alt="product-4-thumbnail" class="product-thumbnail-img">
+                        <div class="thumbnail-img-selected-filter"></div>
+                    </div>
+                </div>
+            </section>
+            <section id="item-details-section">
+                <h3 id="company-text">SNEAKER COMPANY</h3>
+                <h1 id="product-title">Fall Limited Edition Sneakers</h1>
+                <p id="product-description">These low-profile sneakers are your perfect casual wear companion.
+                    Featuring a durable rubber outer sole, they'll withstand everything
+                    the weather can offer.
+                </p>
+                <div id="price-container">
+                    <div>
+                        <span id="price">$125.00</span>
+                        <span id="discount">50%</span>
+                    </div>
+                    <span id="og-price">$250.00</span>
+                </div>
+                <div id="cart-quantity-and-button-container">
+                    <div id="quantity-container">
+                        <span id="minus-img">
+                            <img src="./images/icon-minus.svg" alt="minus-img">
+                        </span>
+                        <strong style="font-size: 1.25rem;" id="quantity">0</strong>
+                        <span id="plus-img">
+                            <img src="./images/icon-plus.svg" alt="plus-img">
+                        </span>
+                    </div>
+                    <div id="add-cart-btn">
+                        <img src="./images/icon-cart.svg" alt="cart-img" id="add-cart-img">
+                        <span style="font-weight: 600;">Add to cart</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <div id="desktop-preview-mode-container">
+            <div id="desktop-preview-mode-content-container">
+                <img src="./images/icon-close.svg" alt="close-button" id="desktop-preview-mode-close-img">
+                <img src="./images/image-product-1.jpg" id="desktop-preview-mode-main-img" alt="main-img">
+                <div class="icon-bg desktop" id="preview-mode-icon-bg-previous">
+                    <img src="./images/icon-previous.svg" alt="previous-btn" id="previous-icon-desktop">
+                </div>
+                <div class="icon-bg desktop" id="preview-mode-icon-bg-next">
+                    <img src="./images/icon-next.svg" alt="next-btn" id="next-icon-desktop">
+                </div>
+                <div class="desktop-preview-img-row preview-mode-row">
+                    <div class="product-thumbnail-container preview-mode-thumbnail">
+                        <img src="./images/image-product-1-thumbnail.jpg" alt="product-1-thumbnail" class="product-thumbnail-img">
+                        <div class="thumbnail-img-selected-filter preview-mode-filter"></div>
+                    </div>
+                    <div class="product-thumbnail-container preview-mode-thumbnail">
+                        <img src="./images/image-product-2-thumbnail.jpg" alt="product-2-thumbnail" class="product-thumbnail-img">
+                        <div class="thumbnail-img-selected-filter preview-mode-filter"></div>
+                    </div>
+                    <div class="product-thumbnail-container preview-mode-thumbnail">
+                        <img src="./images/image-product-3-thumbnail.jpg" alt="product-3-thumbnail" class="product-thumbnail-img">
+                        <div class="thumbnail-img-selected-filter preview-mode-filter"></div>
+                    </div>
+                    <div class="product-thumbnail-container preview-mode-thumbnail"> 
+                        <img src="./images/image-product-4-thumbnail.jpg" alt="product-4-thumbnail" class="product-thumbnail-img">
+                        <div class="thumbnail-img-selected-filter preview-mode-filter"></div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="icon-bg" id="icon-bg-next">
-            <img src="./images/icon-next.svg" alt="next-btn" id="next-icon">
-        </div>
-    </section>
-    <main>
-        <h3 id="company-text">SNEAKER COMPANY</h3>
-        <h1 id="product-title">Fall Limited Edition Sneakers</h1>
-        <p id="product-description">These low-profile sneakers are your perfect casual wear companion.
-            Featuring a durable rubber outer sole, they'll withstand everything
-            the weather can offer.
-        </p>
-        <div id="price-container">
-            <span id="price">$125.00</span>
-            <span id="discount">50%</span>
-            <span id="og-price">$250.00</span>
-        </div>
-        <div id="quantity-container">
-            <span id="minus-img">
-                <img src="./images/icon-minus.svg" alt="minus-img">
-            </span>
-            <strong style="font-size: 1.25rem;" id="quantity">0</strong>
-            <span id="plus-img">
-                <img src="./images/icon-plus.svg" alt="plus-img">
-            </span>
-        </div>
-        <div id="add-cart-btn">
-            <img src="./images/icon-cart.svg" alt="cart-img" id="add-cart-img">
-            <span style="font-weight: 600;">Add to cart</span>
-        </div>
-    </main>
+    </div>
+            
 </body>
 </html>

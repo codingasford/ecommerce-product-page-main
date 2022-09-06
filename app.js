@@ -1,3 +1,6 @@
+let mobileMediaQuery = window.matchMedia("(max-width: 1000px)");
+let desktopMediaQuery = window.matchMedia("(min-width: 1000px)");
+
 let minusImgElem = document.querySelector("#minus-img");
 let plusImgElem = document.querySelector("#plus-img");
 let quantityElem = document.querySelector("#quantity");
@@ -12,8 +15,8 @@ const currentPreviewImgIndex = {
     set incrementIndex(increment) { if(this.index < 3) this.index += increment; }
 };
 let sneakerPreviewElem = document.querySelector("#sneaker-preview");
-let previousImgElem = document.querySelector("#icon-bg-previous");
-let nextImgElem = document.querySelector("#icon-bg-next");
+let previousImgElemMobile = document.querySelector("#icon-bg-previous");
+let nextImgElemMobile = document.querySelector("#icon-bg-next");
 let headerCartBtnElem = document.querySelector("#cart-img");
 let cartContainerElem = document.querySelector("#cart-container");
 let addCartBtnElem = document.querySelector("#add-cart-btn");
@@ -29,6 +32,30 @@ let hamburgerMenuElem = document.querySelector("#hamburger-menu-pullout");
 let hamburgerMenuCloseElem = document.querySelector("#hamburger-menu-close-img");
 let hamburgerMenuOpen = false;
 let menuFadeBgElem = document.querySelector("#menu-fade-bg");
+let sneakerPreviewThumbnailElems = document.querySelectorAll(".product-thumbnail-container");
+let desktopSneakerPreviewThumbnailElems = document.querySelectorAll(".product-thumbnail-container.preview-mode-thumbnail");
+const desktopPreviewModeContainer = document.querySelector("#desktop-preview-mode-container");
+const desktopPreviewModeCloseImg = document.querySelector("#desktop-preview-mode-close-img");
+let isPreviewMode = false;
+const desktopPreviewModeImgElem = document.querySelector("#desktop-preview-mode-main-img")
+const previousImgElemDesktop = document.querySelector("#preview-mode-icon-bg-previous");
+const nextImgElemDesktop = document.querySelector("#preview-mode-icon-bg-next");
+const ThumbnailFilterElems = document.querySelectorAll(".thumbnail-img-selected-filter");
+const previewModeThumbnailFilterElems = document.querySelectorAll(".preview-mode-filter");
+const defaultFilterSettings = {
+    //these wont be null, also it assumes all filter elem will have same settings as 1st thumbnail, which they should
+    backgroundColor: `${ThumbnailFilterElems[0].style.backgroundColor}`,
+    border: `${ThumbnailFilterElems[0].style.border}`,
+    borderRadius: `${ThumbnailFilterElems[0].style.borderRadius}`
+};
+const thumbnailImgIndex = {
+    index: 0,
+    set assignValue(value) { this.index = value; },
+    set decrementIndex(decrement) { if(this.index > 0) this.index -= decrement; },
+    set incrementIndex(increment) { if(this.index < 3) this.index += increment; }
+};
+const previewModeBackground = document.querySelector("#preview-bg");
+
 
 //increase quantity
 plusImgElem.addEventListener("click", () => {
@@ -47,15 +74,15 @@ minusImgElem.addEventListener("click", () => {
 });
 
 
-//next image preview
-nextImgElem.addEventListener("click", () => {
+//next image preview mobile
+nextImgElemMobile.addEventListener("click", () => {
     currentPreviewImgIndex.incrementIndex = 1;
     sneakerPreviewElem.setAttribute("src", previewImgArr[currentPreviewImgIndex.index]);
 });
 
 
-//previous image preview
-previousImgElem.addEventListener("click", () => {
+//previous image preview mobile
+previousImgElemMobile.addEventListener("click", () => {
     currentPreviewImgIndex.decrementIndex = 1;
     sneakerPreviewElem.setAttribute("src", previewImgArr[currentPreviewImgIndex.index]);
 });
@@ -64,13 +91,18 @@ headerCartBtnElem.addEventListener("click", () => {
     //enable cart display, disable preview buttons
     if(cartContainerElem.style.display === "none" && !hamburgerMenuOpen) {
         cartContainerElem.style.display = "flex";
-        previousImgElem.style.display = "none";
-        nextImgElem.style.display = "none";
+        previousImgElemMobile.style.display = "none";
+        nextImgElemMobile.style.display = "none";
     } else {
         //disable cart display, re-enable preview buttons
         cartContainerElem.style.display = "none";
-        previousImgElem.style.display = "flex";
-        nextImgElem.style.display = "flex";
+        if(mobileMediaQuery.matches) {
+             //this checks to make sure user still in mobile
+             //or else this would enable the mobile icons in desktop mode
+            previousImgElemMobile.style.display = "flex";
+            nextImgElemMobile.style.display = "flex";
+        }
+
     }
 })
 
@@ -113,14 +145,14 @@ deleteCartItemElem.addEventListener("click", () => {
     //dosable cart icon quantity preview
     cartImgQuantityElem.style.display = "none";
 });
-
+ 
 //hamburger menu functionality
 menuImgElem.addEventListener("click", () => {
     hamburgerMenuElem.style.display = "block";
     hamburgerMenuOpen = true;
     //renable previous and next buttons in case was in cart when clicked menu
-    previousImgElem.style.display = "flex";
-    nextImgElem.style.display = "flex";
+    previousImgElemMobile.style.display = "flex";
+    nextImgElemMobile.style.display = "flex";
     //disable cart so both aren't open at the same time
     cartContainerElem.style.display = "none";
     //enaable menu fade background
@@ -131,8 +163,134 @@ hamburgerMenuCloseElem.addEventListener("click", () => {
     hamburgerMenuElem.style.display = "none";
     hamburgerMenuOpen = false;
     //renable previous and next buttons
-    previousImgElem.style.display = "flex";
-    nextImgElem.style.display = "flex";
+    previousImgElemMobile.style.display = "flex";
+    nextImgElemMobile.style.display = "flex";
     //disable menu fade background
     menuFadeBgElem.style.display = "none";
+});
+
+window.addEventListener("resize", () => {
+    //everytime window resized check if changed to desktop mode 
+    //disable preview buttons
+    //initially disable the preview buttons so no carry over from desktop mode on resize
+    if(desktopMediaQuery.matches) {
+        previousImgElemMobile.style.display = "none";
+        nextImgElemMobile.style.display = "none";
+
+    } else {
+        previousImgElemMobile.style.display = "flex";
+        nextImgElemMobile.style.display = "flex";
+    }
+    
+});
+
+//Click To Select Thumbnail and Open Up Preview
+
+sneakerPreviewThumbnailElems.forEach(thumbnail => {
+    
+
+    thumbnail.addEventListener("click", () => {
+
+        thumbnailImgIndex.assignValue = thumbnail.firstElementChild.getAttribute("src").match(/\d+/)[0] - 1;
+
+        
+        if(isPreviewMode) {
+
+            DeselectAllPreviewThumbnails();
+            SelectPreviewModeThumbnailByIndex(thumbnailImgIndex.index);
+
+        } else {
+
+            DeselectAllThumbnails();
+
+            //apply select styles to thumbnail clicked in normal mode then enable preview mode
+            SelectPreviewModeThumbnailByIndex(thumbnailImgIndex.index);
+            EnablePreviewMode();
+            
+        }
+
+        //change preview img to selected img
+        desktopPreviewModeImgElem.setAttribute("src", previewImgArr[thumbnailImgIndex.index]);
+
+
+    
+    });
+});
+
+function SelectPreviewModeThumbnailByIndex(index) {
+    let thisThumbnailFilterElem = desktopSneakerPreviewThumbnailElems[index].querySelector(".thumbnail-img-selected-filter");
+    console.log(index);
+    
+    thisThumbnailFilterElem.style.backgroundColor = "hsl(0, 0%, 100%, 65%)";
+    thisThumbnailFilterElem.style.border = "0.2rem solid var(--primary-color)";
+    thisThumbnailFilterElem.style.borderRadius = "0.8rem";
+    
+}
+
+function DeselectAllPreviewThumbnails() {
+    //gives all relevant thumbnails default styling
+    previewModeThumbnailFilterElems.forEach(thumbnailFilter => {
+        thumbnailFilter.style.backgroundColor = defaultFilterSettings.backgroundColor;
+        thumbnailFilter.style.border = defaultFilterSettings.border;
+        thumbnailFilter.style.borderRadius = defaultFilterSettings.borderRadius;
+    });
+}
+
+function DeselectAllThumbnails() {
+        //gives all relevant thumbnails default styling
+    ThumbnailFilterElems.forEach(thumbnailFilter => {
+        thumbnailFilter.style.backgroundColor = defaultFilterSettings.backgroundColor;
+        thumbnailFilter.style.border = defaultFilterSettings.border;
+        thumbnailFilter.style.borderRadius = defaultFilterSettings.borderRadius;
+    });
+}
+
+
+function EnablePreviewMode() {
+    //enable black transparent background
+    previewModeBackground.style.display = "block";
+
+    desktopPreviewModeContainer.style.display = "flex";
+    isPreviewMode = true;
+
+    //disable cart so cart and preview aren't open at the same time
+    cartContainerElem.style.display = "none";
+
+    //add close button logic
+    desktopPreviewModeCloseImg.addEventListener("click", () => {
+        desktopPreviewModeContainer.style.display = "none";
+        previewModeBackground.style.display = "none";
+        isPreviewMode = false;
+    
+
+    DeselectAllThumbnails();
+
+    });
+}
+
+
+//next image preview desktop
+nextImgElemDesktop.addEventListener("click", () => {
+
+    //select next image
+    DeselectAllPreviewThumbnails();
+    thumbnailImgIndex.incrementIndex = 1;
+    SelectPreviewModeThumbnailByIndex(thumbnailImgIndex.index);
+
+    //change big image preview to next img
+    desktopPreviewModeImgElem.setAttribute("src", previewImgArr[thumbnailImgIndex.index]);
+
+});
+
+
+//previous image preview desktop
+previousImgElemDesktop.addEventListener("click", () => {
+
+    //select previous image
+    DeselectAllPreviewThumbnails();
+    thumbnailImgIndex.decrementIndex = 1;
+    SelectPreviewModeThumbnailByIndex(thumbnailImgIndex.index);
+    
+    // //change big image preview to previous img
+    desktopPreviewModeImgElem.setAttribute("src", previewImgArr[thumbnailImgIndex.index]);
 });
